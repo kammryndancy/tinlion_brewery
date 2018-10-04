@@ -1,0 +1,26 @@
+{
+  "name": "tinlion_brewery",
+  "version": "1.0.0",
+  "description": "Application that allows integrated physical and programmatic management of brew equiptment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kammryndancy/tinlion_brewery.git"
+  },
+  "keywords": [
+    "beer",
+    "brewing",
+    "mead",
+    "cider",
+    "raspberrypi"
+  ],
+  "author": "Kammryn Dancy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kammryndancy/tinlion_brewery/issues"
+  },
+  "homepage": "https://github.com/kammryndancy/tinlion_brewery#readme"
+}
