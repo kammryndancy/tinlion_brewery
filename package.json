@@ -11,6 +11,13 @@
     "type": "git",
     "url": "git+https://github.com/kammryndancy/tinlion_brewery.git"
   },
+  "dependencies": {
+    "socket.io": "2.1.1",
+    "onoff": "3.2.2"
+  },
+  "devDependencies": {
+    "eslint": "5.1.0"
+  },
   "keywords": [
     "beer",
     "brewing",
