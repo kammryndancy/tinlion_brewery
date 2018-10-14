@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen"/>
+    <link href='https://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">TinLion</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/brew">Brew</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<div class="container">
+    <div class="container">
+        <h1>Control Element On/Off</h1>
+        <div class="elementContainer">
+            <input type="button" class="btn" value="OFF" id="elementOn"/>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Circulation Pump</h1>
+        <div class="pumpContainer">
+            <input type="button" class="btn" value="OFF" id="pump"/>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Element Temperature</h1>
+        <div class="slider">
+            <input type="range" min="15" max="100" value="50" onchange="rangevalue.value=value" id="elementTemp">
+            <output id="rangevalue">50</output>
+            <input type="button" class="btn btn-primary" value="Set Temp" id="elementButton"/>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p class="text-muted">Lets have a beer.</p>
+    </div>
+</footer>
+<script>
+    var slider = document.getElementById("elementTemp");
+    var socket = io(); //load socket.io-client and connect to the host that serves the page
+    window.addEventListener("load", () => { //when page loads
+        document.getElementById("pump").addEventListener("click", () => {
+            if(pump.value === 'ON') {
+                console.log("Turning pump off");
+                pump.value = 'OFF';
+                socket.emit("pumpOn", false);
+            } else {
+                console.log("Turning pump on");
+                pump.value = 'ON';
+                socket.emit("pumpOn", true);
+            }
+        });
+
+        var elementOn = document.getElementById("elementOn");
+        elementOn.addEventListener("click", () => {
+            if(elementOn.value === 'ON') {
+                console.log("Turning element off");
+                elementOn.value = 'OFF';
+                socket.emit("elementOn", false);
+            } else {
+                console.log("Turning element on");
+                elementOn.value = 'ON';
+                socket.emit("elementOn", true);
+            }
+        });
+
+        var elementButton = document.getElementById("elementButton");
+        elementButton.addEventListener("click", () => {
+            console.log("Recieved setTemp event");
+            console.log(`Setting temp to: ${slider.value}`);
+            socket.emit("setTemp", Number(slider.value));
+        });
+    });
+    socket.on('element', (data) => { //get button status from client
+        console.log(`New state from the Pi`);
+        document.getElementById("elementOn").checked = data; //change checkbox according to push button on Raspberry Pi
+        socket.emit("elementOn", data); //send push button status to back to server
+    });
+</script>
+</body>
+</html>
