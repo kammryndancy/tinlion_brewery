@@ -8,52 +8,49 @@
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script> <!-- include socket.io client side script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">TinLion</a>
         </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
                 <li class="active"><a href="/brew">Brew</a></li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
     </div>
 </nav>
-<div class="container">
+<div class="demo">
     <div class="container">
-        <h1>Control Element On/Off</h1>
-        <div class="elementContainer">
+        <div class="col-lg-6 center-block">
+            <h1 class="operation_header">Control Element On/Off</h1>
+            <img class="operation_img" src="/images/tank2.svg">
             <input type="button" class="btn" value="OFF" id="elementOn"/>
         </div>
-    </div>
-    <div class="container">
-        <h1>Circulation Pump</h1>
-        <div class="pumpContainer">
+        <div class="col-lg-6">
+            <h1 class="operation_header">Circulation Pump</h1>
+            <img class="operation_img" src="/images/pump.svg">
             <input type="button" class="btn" value="OFF" id="pump"/>
         </div>
-    </div>
-    <div class="container">
-        <h1>Element Temperature</h1>
-        <div class="slider">
-            <input type="range" min="15" max="100" value="50" onchange="rangevalue.value=value" id="elementTemp">
-            <output id="rangevalue">50</output>
-            <input type="button" class="btn btn-primary" value="Set Temp" id="elementButton"/>
+        <div class="col-12">
+            <h1 class="operation_header">Element Temperature</h1>
+            <div class="slider">
+                <input type="range" min="15" max="100" value="50" onchange="rangevalue.value=value" id="elementTemp">
+                <output id="rangevalue">50</output>
+                <input type="button" class="btn btn-primary" value="Set Temp" id="elementButton"/>
+            </div>
         </div>
     </div>
 </div>
-<footer class="footer">
-    <div class="container">
-        <p class="text-muted">Lets have a beer.</p>
-    </div>
-</footer>
+<div class="footer"><div class="container">Let's Have Beer.</div></div>
 <script>
     var slider = document.getElementById("elementTemp");
     var socket = io(); //load socket.io-client and connect to the host that serves the page

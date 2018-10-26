@@ -1,7 +1,28 @@
 body {
     background-color: #f0f7ef;
-    padding-top: 50px;
-    margin-bottom: 60px;
+    position: relative;
+    margin: 0;
+    padding-bottom: 10rem;
+    min-height: 100%;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+#elementOn {
+    margin: auto;
+}
+.operation_img {
+    width: 50%
+}
+
+.operation_header {
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.demo {
+    margin: 0 auto;
+    padding-top: 64px;
+    width: 94%;
 }
 
 .starter-template {
@@ -11,11 +32,12 @@ body {
 
 .footer {
     position: absolute;
+    right: 0;
     bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
+    left: 0;
+    padding: 1rem;
     background-color: #b2c9ab;
+    text-align: center;
 }
 
 .container .text-muted {
@@ -74,12 +96,13 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 
 input[value="OFF"] {
-    background-color: red;
+    color: darkred;
+    background-color: #B22222;
 }
 
 input[value="ON"] {
-    background-color: green;
+    color: darkolivegreen;
+    background-color: #6B8E23;
 }
-
 
 
