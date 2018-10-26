@@ -4,6 +4,7 @@
   "description": "Application that allows integrated physical and programmatic management of brew equiptment.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint lib/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./lib/webserver.js"
   },
